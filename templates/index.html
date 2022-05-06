@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="top-container">
+   <div class="inner-container">
+       <div>
+          <span class="upper-elem">
+              Coins : <a href="{% url 'CryptoApp:index'%}" style="color: dodgerblue">{{ active_cryptocurrencies }}</a>
+          </span>
+           <span class="upper-elem">
+               Market Cap Change Percentage : <a style="color: dodgerblue">{{ market_cap_change_percentage_24h_usd }}</a>
+          </span>
+           <span class="upper-elem">
+               Total Market Cap Value : <a style="color: dodgerblue"> ${{ total_market_cap }} </a>
+           </span>
+       </div>
+   </div>
+  </div>
+{% include "navigation.html" %}
+<div id="multi-item-example" class="carousel slide carousel-multi-item mt-2" data-ride="carousel">
+
+    <ol class="carousel-indicators">
+      <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+      <li data-target="#multi-item-example" data-slide-to="1"></li>
+      <li data-target="#multi-item-example" data-slide-to="2"></li>
+    </ol>
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+
+      <!--First slide-->
+      <div class="carousel-item active">
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card mb-2 border-0">
+              <iframe  class="shadow-1-strong rounded" height="200" src="https://www.youtube.com/embed/VYWc9dFqROI"
+                       title="YouTube video player" frameborder="0"
+                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                       allowfullscreen></iframe>
+              <div class="card-body">
+                <h6 class="card-title">Crypto Tutorial</h6>
+                <p class="card-text">Information on Crypto for Beginners</p>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 clearfix d-none d-md-block">
+            <div class="card mb-2 border-0">
+              <iframe height="200"
+                      src="https://www.youtube.com/embed/gOjgNlTBYS0" title="YouTube video player"
+                      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen></iframe>
+              <div class="card-body">
+                <h6 class="card-title">Crypto News</h6>
+                <p class="card-text">Apple Going All In on Bitcoin.</p>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 clearfix d-none d-md-block">
+            <div class="card mb-2 border-0">
+              <iframe src="https://www.youtube.com/embed/2SHSDZjrZSU" height="200" title="YouTube video player" frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen></iframe>
+              <div class="card-body">
+                <h6 class="card-title">Crypto Projects</h6>
+                <p class="card-text"> Crypto Projects in BNB Domain</p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <!--/.First slide-->
+
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card mb-2 border-0">
+              <iframe  class="shadow-1-strong rounded" height="200" src="https://www.youtube.com/embed/VYWc9dFqROI"
+                       title="YouTube video player" frameborder="0"
+                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                       allowfullscreen></iframe>
+              <div class="card-body">
+                <h6 class="card-title">Crypto Tutorial</h6>
+                <p class="card-text">Information on Crypto for Beginners</p>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 clearfix d-none d-md-block">
+            <div class="card mb-2 border-0">
+              <iframe height="200"
+                      src="https://www.youtube.com/embed/gOjgNlTBYS0" title="YouTube video player"
+                      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen></iframe>
+              <div class="card-body">
+                <h6 class="card-title">Crypto News</h6>
+                <p class="card-text">Apple Going All In on Bitcoin.</p>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 clearfix d-none d-md-block">
+            <div class="card mb-2 border-0">
+              <iframe src="https://www.youtube.com/embed/2SHSDZjrZSU" height="200" title="YouTube video player" frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen></iframe>
+              <div class="card-body">
+                <h6 class="card-title">Crypto Projects</h6>
+                <p class="card-text"> Crypto Projects in BNB Domain</p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    <!--/.Slides-->
+
+  </div>
+   <div class="container-xxl mt-3">
+       <div class="table-responsive text-white">
+                <table id="myTable" class="table table-striped text-center table-hover table-borderless" data-page-length="25">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Coin</th>
+                            <th scope="col">Symbol</th>
+                            <th scope="col">Current Price</th>
+                            <th scope="col">High 24H</th>
+                            <th scope="col">Low 24H</th>
+                            <th scope="col">Price Change 24H</th>
+                            <th scope="col">Price Change 24H%</th>
+                            <th scope="col">Market Cap</th>
+                             <th scope="col">Volume</th>
+                        </tr>
+                    </thead>
+                    <tbody id="myTable">
+                        {% for i in page_obj %}
+                        <tr>
+                        <td>{{forloop.counter}}</td>
+                            <td width="100px">
+                                <div class="container-fluid">
+                                   <img src="{{i.image}}" height="30px" style="margin:1px">
+                                    <h5 style="color: rgb(0, 255, 229); margin: 10px"><a href="{% url 'CryptoApp:coinDetail'  i.name i.current_price i.market_cap %}">{{i.name}}</a></h5>
+                                </div>
+
+                            </td>
+                            <td>
+                                 <span style="text-transform:uppercase;">{{ i.symbol }}
+                                    </span>
+                            </td>
+                            <td>
+                                {% if i.current_price < 0 %}
+                                    <div class="RedColor">
+                                {% else %}
+                                    <div class="GreenColor">
+                                {% endif %}
+                                ${{i.current_price}}</div></td>
+                             <td style="color:black;">${{i.high_24h}}</td>
+                             <td style="color:black;">${{i.low_24h}}</td>
+                             <td>
+                                 {% if i.price_change_24h < 0 %}
+                                    <div class="RedColor">
+                                {% else %}
+                                    <div class="GreenColor">
+                                {% endif %}
+                                ${{i.price_change_24h}}</div>
+                             </td>
+                             <td>
+                                 {% if i.price_change_percentage_24h < 0 %}
+                                    <div class="RedColor">
+                                {% else %}
+                                    <div class="GreenColor">
+                                {% endif %}
+                                ${{i.price_change_percentage_24h}}</div>
+                             </td>
+                            <td style="color:rgb(73, 73, 242);">${{i.market_cap}}</td>
+                            <td style="color:rgb(73, 73, 242);">${{i.total_volume}}</td>
+                            <td>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+
+       </div>
+    {% include "pagination.html" %}
+   </div>
+     <script type="text/javascript">
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                let value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+    </script>
+    {% include "footer.html" %}
+{% endblock content %}

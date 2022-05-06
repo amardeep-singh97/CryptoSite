@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-scroll bg-dark">
+  <a class="navbar-brand">Crypto Tracker</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'CryptoApp:index' %}">Home</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'CryptoApp:chart' %}">Trending</a>
+      </li>
+       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Analysis
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="https://public.tableau.com/views/PriceChange24H/PriceChange24H?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link" target="_blank">PriceChange24H</a>
+          <a class="dropdown-item" href="https://public.tableau.com/views/PercentPriceChange24H/PercentPriceChange24H?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link" target="_blank">Percent Price Change 24H</a>
+          <a class="dropdown-item" href="https://public.tableau.com/views/MarketCap_16489394266110/MarketCap?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link" target="_blank">Market Cap 24H</a>
+            <a class="dropdown-item" href="https://public.tableau.com/views/ReturnOnInvestment/ReturnOnInvestment?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link" target="_blank">Return on Investment</a>
+
+
+        </div>
+      </li>
+    </ul>
+       <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{ user.username }}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'CryptoApp:portfolio' %}">Portfolio</a>
+          <a class="dropdown-item" href="/logout">Logout</a>
+      </li>
+             {% else %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'CryptoApp:register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'CryptoApp:login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            {% endif %}
+       </ul>
+    <form class="form-inline my-2 my-lg-0" method="POST">
+      {% csrf_token %}
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="quote" id="myInput">
+    </form>
+  </div>
+</nav>
+{% endblock %}
